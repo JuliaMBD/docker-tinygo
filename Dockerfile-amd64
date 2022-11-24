@@ -28,7 +28,7 @@ RUN set -eux; \
     tar="go${GOLANG_VERSION}.linux-amd64.tar.gz"; \
     wget "https://go.dev/dl/$tar"; \
     rm -rf /go; \
-    tar -C / -xzf "https://go.dev/dl/$tar"; \
+    tar -C / -xzf $tar; \
     rm $tar
 ENV PATH $PATH:/go/bin
 
