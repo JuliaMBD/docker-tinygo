@@ -35,6 +35,8 @@ ENV PATH $PATH:/go/bin
 USER 1000
 WORKDIR /home/coder
 
-RUN code-server --install-extension hediet.vscode-drawio
+RUN set -eux; \
+    code-server --install-extension hediet.vscode-drawio; \
+    rm $HOME/.config/code-server/config.yaml
 
 EXPOSE 8080
