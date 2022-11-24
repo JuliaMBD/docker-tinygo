@@ -1,0 +1,36 @@
+FROM codercom/code-server:4.8.3-focal
+
+USER root
+
+ENV DEBIAN_FRONTEND nointeractive
+RUN apt-get update &&\
+    apt-get install -y \
+    gcc-avr \
+    avr-libc \
+    avrdude \
+    wget \
+    usbutils \
+    cmake &&\
+    apt-get clean &&\
+    rm -fr /var/lib/apt/lists/*
+
+ENV TINYGO_VERSION=0.26.0
+RUN set -eux; \
+    deb="tinygo_${TINYGO_VERSION}_amd64.deb"; \
+    wget https://github.com/tinygo-org/tinygo/releases/download/v${TINYGO_VERSION}/$deb; \
+    dpkg -i $deb; \
+    rm $deb
+ENV PATH $PATH:/usr/local/bin
+
+ENV GOLANG_VERSION=1.19.3
+ENV GOPATH=/go
+RUN set -eux; \
+    tar="go${GOLANG_VERSION}.linux-amd64.tar.gz"; \
+    wget "https://go.dev/dl/$tar"; \
+    rm -rf /go; \
+    tar -C / -xzf "https://go.dev/dl/$tar"; \
+    rm $tar
+ENV PATH $PATH:/go/bin
+
+USER 1000
+WORKDIR /home/coder
