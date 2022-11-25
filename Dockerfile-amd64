@@ -32,11 +32,4 @@ RUN set -eux; \
     rm $tar
 ENV PATH $PATH:/go/bin
 
-USER 1000
-
-RUN set -eux; \
-    code-server --install-extension hediet.vscode-drawio; \
-    sed -i 's/password: [0-9a-f]+/password: coder/g' $HOME/.config/code-server/config.yaml; \
-    make -p $HOME/coder/project
-
 WORKDIR /home/coder/project
