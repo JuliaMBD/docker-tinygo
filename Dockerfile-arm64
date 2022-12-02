@@ -29,26 +29,22 @@ RUN apt-get update &&\
 
 ENV TINYGO_VERSION=0.26.0
 RUN set -eux; \
-    deb="tinygo_${TINYGO_VERSION}_amd64.deb"; \
+    deb="tinygo_${TINYGO_VERSION}_arm64.deb"; \
     wget https://github.com/tinygo-org/tinygo/releases/download/v${TINYGO_VERSION}/$deb; \
     dpkg -i $deb; \
     rm $deb
 
 ENV GOLANG_VERSION=1.19.3
 RUN set -eux; \
-    tar="go${GOLANG_VERSION}.linux-amd64.tar.gz"; \
+    tar="go${GOLANG_VERSION}.linux-arm64.tar.gz"; \
     wget "https://go.dev/dl/$tar"; \
     rm -rf /usr/local/go; \
     tar -C /usr/local -xzf $tar; \
     rm $tar
 RUN echo 'export PATH=$PATH:/usr/local/go/bin' > /etc/profile.d/go.sh
 
-RUN set -eux; \
-    wget https://dl.espressif.com/dl/xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0.tar.gz; \
-    mkdir /usr/local/esp; \
-    tar -C /usr/local/esp -xzf xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0.tar.gz; \
-    rm xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0.tar.gz
-RUN echo 'export PATH=$PATH:/usr/local/esp/xtensa-esp32-elf/bin' > /etc/profile.d/esp.sh
+RUN git clone https://github.com/MakerAsia/kbide-esp-idf-platfrom-linuxarm64.git /usr/local/esp
+RUN echo 'export PATH=$PATH:/usr/local/esp/tools/xtensa-esp32-elf/bin' > /etc/profile.d/esp.sh
 RUN pip install esptool --system
 
 RUN curl -fsSL https://code-server.dev/install.sh | sh
