@@ -34,7 +34,7 @@ RUN set -eux; \
     dpkg -i $deb; \
     rm $deb
 
-ENV GOLANG_VERSION=1.19.3
+ENV GOLANG_VERSION=1.18.8
 RUN set -eux; \
     tar="go${GOLANG_VERSION}.linux-amd64.tar.gz"; \
     wget "https://go.dev/dl/$tar"; \
