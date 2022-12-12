@@ -42,6 +42,9 @@ RUN set -eux; \
     tar -C /usr/local -xzf $tar; \
     rm $tar
 RUN echo 'export PATH=$PATH:/usr/local/go/bin' > /etc/profile.d/go.sh
+RUN echo 'export GOPATH=$HOME/go' >> /etc/skel/.bash_profile
+RUN echo 'export GOBIN=$GOPATH/bin' >> /etc/skel/.bash_profile
+RUN echo 'export PATH=$PATH:$GOBIN' >> /etc/skel/.bash_profile
 
 RUN set -eux; \
     wget https://dl.espressif.com/dl/xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0.tar.gz; \
