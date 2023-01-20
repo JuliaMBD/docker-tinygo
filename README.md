@@ -22,7 +22,7 @@ docker run -it --rm --name tinygo-ide \
     -e VSCODE_USER=vscode \
     -e VSCODE_UID=1000 \
     -e VSCODE_HOME=/home/vscode \
-    okamumu/tinygo-ide
+    okamumu/tinygo-ide:0.26.0
 ```
 
 If /dev/ttyACM0 exists, you can do it.
@@ -36,7 +36,7 @@ docker run -it --rm --name tinygo-ide \
     -e VSCODE_USER=vscode \
     -e VSCODE_UID=1000 \
     -e VSCODE_HOME=/home/vscode \
-    okamumu/tinygo-ide
+    okamumu/tinygo-ide:0.26.0
 ```
 
 ## Environment
