@@ -15,7 +15,7 @@ A docker image for a lightweight integrated development environment for TinyGo
 ## Usage
 
 ```sh
-docker run -it --rm --namge tinygo-ide \
+docker run -it --rm --name tinygo-ide \
     -p 8080:8080 \
     -v $PWD:/home/vscode \
     -e VSCODE_PASSWORD=password \
@@ -28,7 +28,7 @@ docker run -it --rm --namge tinygo-ide \
 If /dev/ttyACM0 exists, you can do it.
 
 ```sh
-docker run -it --rm --namge tinygo-ide \
+docker run -it --rm --name tinygo-ide \
     -p 8080:8080 \
     --device=/dev/ttyACM0:/dev/ttyACM0 \
     -v $PWD:/home/vscode \
